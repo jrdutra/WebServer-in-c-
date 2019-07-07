@@ -13,7 +13,11 @@ CROW_ROUTE(app, "/add_json")
 	    int sum = x["a"].i()+x["b"].i();
 	    std::ostringstream os;
 	    os << sum;
-	    return crow::response{os.str()};
+
+		crow::json::wvalue y;
+    		y["resultado"] = os.str();
+
+	    return crow::response{y.str()};
 });
  
     app.port(18080).multithreaded().run();
